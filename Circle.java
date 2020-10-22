@@ -1,4 +1,4 @@
-import edu.progmatic.Point;
+import progmatic.Point;
 
 public class Circle {
     Point center;
