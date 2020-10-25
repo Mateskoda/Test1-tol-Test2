@@ -2,7 +2,9 @@ package progmatic;
 
 public class Pirates {
     int alcoholLevel = 0;
-    boolean deathOrNot;
+    boolean deathOrNotgit status
+    ;
+    boolean passedOut;
 
     public void drinkSomeRum() {
         if (deathOrNot) {
@@ -27,12 +29,14 @@ public class Pirates {
         deathOrNot = true;
     }
 
-    public void brawl(Pirate other) {
+    public void brawl(Pirates other) {
         if (Math.random() < 0.33) {
             this.die();
         } else if (Math.random() < 0.66) {
             other.die();
         } else {
+            this.passedOut=true;
+            other.passedOut=true;
 
         }
     }

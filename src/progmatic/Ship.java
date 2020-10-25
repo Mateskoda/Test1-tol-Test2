@@ -3,22 +3,36 @@ package progmatic;
 import java.util.ArrayList;
 
 public class Ship {
-    Pirate captain;
-    Pirate crew;
-  //  ArrayList<P>
+    Pirates captain;
+    Pirates crew;
+    ArrayList<Pirates> ship;
 
     public Ship() {
-        ArrayList<Pirate> ship= new ArrayList<Pirate>();
+        ArrayList<Pirates> ship= new ArrayList<Pirates>();
 
     }
 
     public void fillShip(){
-        captain = new Pirate();
- //       ship.add()
+        captain = new Pirates();
+        ship.add(captain);
+        Pirates crew= new Pirates();
 
-        int r = (int)(Math.random()*100);
+        int r = (int)(Math.random()*50);
+        for (int i = 0; i < r; i++) {
+            ship.add(crew);
 
-    }
+        }}
+        public void cntDeathPirates(){
+            for (int i = 0; i <ship.size() ; i++) {
+                if (ship.get(i).deathOrNot==true)
+            }
+        }
+        public void represent (){
+            System.out.println("Captains rumlevel is" + captain.alcoholLevel);
+            System.out.println("Ship members =" +ship.size());
+
+        }
+
     /*Add a parrot.The Pirate Ship
     The place for the Pirates
 ·        Create a Ship class.
