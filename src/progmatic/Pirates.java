@@ -2,8 +2,7 @@ package progmatic;
 
 public class Pirates {
     int alcoholLevel = 0;
-    boolean deathOrNotgit status
-    ;
+    boolean deathOrNot;
     boolean passedOut;
 
     public void drinkSomeRum() {

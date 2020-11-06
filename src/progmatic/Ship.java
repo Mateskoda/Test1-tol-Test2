@@ -8,49 +8,80 @@ public class Ship {
     ArrayList<Pirates> ship;
 
     public Ship() {
-        ArrayList<Pirates> ship= new ArrayList<Pirates>();
+        this.ship = new ArrayList<Pirates>();
 
     }
 
-    public void fillShip(){
+    public void fillShip() {
         captain = new Pirates();
         ship.add(captain);
-        Pirates crew= new Pirates();
+        Pirates crew = new Pirates();
 
-        int r = (int)(Math.random()*50);
+        int r = (int) (Math.random() * 50);
         for (int i = 0; i < r; i++) {
             ship.add(crew);
 
-        }}
-        public void cntDeathPirates(){
-            for (int i = 0; i <ship.size() ; i++) {
-                if (ship.get(i).deathOrNot==true)
+        }
+    }
+
+    public int cntDeadPirates() {
+        int cntDeath = 0;
+        for (int i = 1; i < ship.size(); i++) {
+            if (ship.get(i).deathOrNot == true) {
+                cntDeath++;
             }
         }
-        public void represent (){
+        return cntDeath;
+    }
+
+    public void represent() {
+        if (captain.deathOrNot) {
+            System.out.println("The captain is dead.");
+        } else if (captain.passedOut) {
+            System.out.println(" The Captain passed out.");
+        } else {
             System.out.println("Captains rumlevel is" + captain.alcoholLevel);
-            System.out.println("Ship members =" +ship.size());
+        }
+        System.out.println("Ship members =" + ship.size());
+        int alivePirates = ship.size() - 1 - cntDeadPirates();
+        System.out.println("The number of alive pirates in the crew is  " + alivePirates);
+
+    }
+
+    public int calculator() {
+        int score = ship.size() - captain.alcoholLevel;
+        return score;
+    }
+
+    public boolean battle(Ship otherShip) {
+        if (this.calculator() > otherShip.calculator()) {
+            for (int i = 0; i < otherShip.ship.size()*Math.random(); i++) {
+                //if (Math.random() < 0.1) {
+                    otherShip.ship.get(i).deathOrNot = true;
+
+            }
+            for (int i = 0; i < ship.size(); i++) {
+                ship.get(i).alcoholLevel = (int) (Math.random() * 4 + 1);
+            }
+            return true;
+
+        } else {
+            for (int i = 0; i < ship.size()*Math.random() ;i++) {
+                //if (Math.random() < 0.1) {
+                    ship.get(i).deathOrNot = true;
+
+            }
+            for (int i = 0; i < ship.size(); i++) {
+                otherShip.ship.get(i).alcoholLevel = (int) (Math.random() * 4 + 1);
+            }
+            return false;
 
         }
-
-    /*Add a parrot.The Pirate Ship
-    The place for the Pirates
-·        Create a Ship class.
-            ·        The Ship stores Pirate-s instances in a list as the crew and has one captain who is also a Pirate.
-·        When a ship is created it doesn't have a crew or a captain.
-            ·        The ship can be filled with pirates and a captain via fillShip() method.
-            ·        Filling the ship with a captain and random number of pirates.
-·        Ships should be represented in a nice way on command line including information about
-·        captains consumed rum, state (passed out / died)
-·        number of alive pirates in the crew
-·        Ships should have a method to battle other ships: ship.battle(otherShip)
-            ·        should return true if the actual ship (this) wins
-·        the ship should win if its calculated score is higher
-·        calculate score: Number of Alive pirates in the crew - Number of consumed rum by the captain
-·        The loser crew has a random number of losses (deaths).
-            ·        The winner captain and crew has a party, including a random number of rum :)
-
-
-
-     */
+    }
 }
+
+/*
+
+
+
+ */
