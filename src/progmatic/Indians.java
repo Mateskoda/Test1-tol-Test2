@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Indians {
+    static   IndiansGender.Gender [] genders = new IndiansGender.Gender[1];
+//    enum Sex {
+//        MAN,
+//        WOMAN
+//    }
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -15,15 +20,26 @@ public class Indians {
             cnt++;
         }
         String[][] indians = new String[cnt][5];
+         genders = new IndiansGender.Gender[cnt];
         List<String> indianEquipments = new ArrayList<>();
         Scanner sc2 = new Scanner(new File("indianok.txt"));
+
+
 
         for (int i = 0; sc2.hasNextLine(); i++) {
             String line = sc2.nextLine();
             String[] parts = line.split(",");
             indians[i][0] = parts[0];
             indians[i][1] = parts[1];
-            indians[i][2] = parts[2];
+//            indians[i][2] = parts[2];
+
+            if (parts[2].equals("f")){
+                genders[i] = IndiansGender.Gender.MAN;
+            }else{
+                genders[i] = IndiansGender.Gender.WOMAN;
+            }
+
+//            System.out.println(indians[i][2]);
             indians[i][3] = parts[3];
             indians[i][4] = parts[4];
         }
@@ -118,11 +134,13 @@ public class Indians {
     public static int tomahawkCntForMen(String[][] equipments, String[][] indians, String collective) {
         int cnt = 0;
         for (int i = 0; i < indians.length; i++) {
-            if (indians[i][1].equals(collective) && indians[i][2].equals("f"))
+            if (indians[i][1].equals(collective) &&
+//                    indians[i][2].equals("f")){
+                            genders[i]== IndiansGender.Gender.MAN){
                 for (int j = 0; j < equipments[i].length; j++) {
                     if (equipments[i][j].equals("tomahawk")) {
                         cnt++;
-                    }
+                    }}
                 }
         }
         return cnt;
@@ -235,11 +253,17 @@ public class Indians {
         int cntM = 0;
         int cntW = 0;
         for (int i = 0; i < indians.length; i++) {
-            if (indians[i][1].equals(collective) && indians[i][2].equals("f")) {
+            if (indians[i][1].equals(collective) &&
+//                    indians[i][2].equals("f")) {
+                    genders[i]== IndiansGender.Gender.MAN){
+
                 cntM++;
             }
-            if (indians[i][1].equals(collective) && indians[i][2].equals("n")) {
-                cntW++;
+            if (indians[i][1].equals(collective) &&
+//                    indians[i][2].equals("n")) {
+                genders[i]== IndiansGender.Gender.WOMAN){
+
+                    cntW++;
             }
         }
         return (double) cntM / cntW;

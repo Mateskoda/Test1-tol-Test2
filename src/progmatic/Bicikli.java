@@ -1,10 +1,10 @@
 package progmatic;
 
 public class Bicikli {
-    int kerekmMeret = 70;
-    int elsoFogas = 32 ;
-    int [ ] hatsoFogas={26,24,22,20,18,16,14} ;
-    int fokozat;
+    private int kerekmMeret = 70;
+    private int elsoFogas = 32 ;
+    private int [ ] hatsoFogas={26,24,22,20,18,16,14} ;
+    private int fokozat;
 
 
     public Bicikli() {
